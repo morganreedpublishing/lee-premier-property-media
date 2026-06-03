@@ -1,0 +1,53 @@
+GitHub and Netlify connection setup
+
+Local Git status:
+This folder is now a Git repository on the main branch.
+Initial commit message: Initial Lee Premier Property Media website
+
+Recommended GitHub repository name:
+lee-premier-property-media
+
+Create the GitHub repo:
+
+1. Go to https://github.com/new
+2. Repository name: lee-premier-property-media
+3. Visibility: Private or Public
+4. Do not add a README, .gitignore, or license on GitHub.
+5. Create repository.
+
+Push this local site to GitHub:
+
+Open a terminal in this folder:
+C:\Users\Greg\Documents\Codex\2026-06-03\files-mentioned-by-the-user-lee\outputs\lee-premier-property-media-site
+
+Then run these commands, replacing YOUR-GITHUB-USERNAME with your GitHub username:
+
+git remote add origin https://github.com/YOUR-GITHUB-USERNAME/lee-premier-property-media.git
+git push -u origin main
+
+Connect GitHub to Netlify:
+
+1. In Netlify, choose Add new site.
+2. Choose Import an existing project.
+3. Choose GitHub.
+4. Authorize Netlify if asked.
+5. Select lee-premier-property-media.
+6. Build command: leave blank
+7. Publish directory: .
+8. Deploy site.
+
+After Netlify deploys:
+
+1. Go to Site configuration > Domain management.
+2. Add www.leepremierpropertymedia.com as the primary custom domain.
+3. Add leepremierpropertymedia.com as the root domain.
+4. Add the DNS records Netlify provides at your domain registrar.
+5. Enable HTTPS.
+
+After this connection is active, future website updates work like this:
+
+git add .
+git commit -m "Describe the update"
+git push
+
+Netlify will automatically rebuild and publish the live website after each push.
