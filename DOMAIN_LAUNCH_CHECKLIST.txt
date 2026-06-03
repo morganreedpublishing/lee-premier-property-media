@@ -1,0 +1,48 @@
+Lee Premier Property Media domain launch checklist
+
+Domain:
+www.leepremierpropertymedia.com
+leepremierpropertymedia.com
+
+Recommended simple launch path with Netlify:
+
+1. Create a Netlify account.
+   Go to https://app.netlify.com/signup and sign up with email, Google, or GitHub.
+
+2. Add a new site.
+   In Netlify, choose Add new site, then Deploy manually.
+
+3. Upload this site folder:
+   lee-premier-property-media-site
+   You can drag the whole folder into Netlify's manual deploy area.
+
+4. Connect the custom domain in Netlify:
+   Go to Site configuration, then Domain management, then add a domain.
+   Primary domain: www.leepremierpropertymedia.com
+   Redirect/root domain: leepremierpropertymedia.com
+
+5. Add the DNS records shown by Netlify.
+   Netlify recommends using www as the primary domain if your DNS stays with an outside registrar.
+   Most setups will ask for:
+   - CNAME record for www pointing to your Netlify site address
+   - A record, ALIAS, or ANAME for the root domain, depending on the registrar
+
+6. Turn on HTTPS/SSL in Netlify.
+   The live website should load as:
+   https://www.leepremierpropertymedia.com/
+
+7. Connect business tools before launch:
+   - Replace the placeholder phone number in script.js
+   - Add scheduling URL in SITE_SETTINGS.schedulerUrl
+   - Add payment checkout links in SITE_SETTINGS.paymentLinks
+   - Confirm hello@leepremierpropertymedia.com is a working mailbox
+
+8. Test before sharing:
+   - Home page loads on desktop and phone
+   - Schedule form opens an email with the correct details
+   - Calendar button opens the booking tool
+   - Payment button opens the right checkout page
+   - Contact email and phone links work
+
+Do not collect credit card numbers directly on this static website. Use Stripe, Square, PayPal, or another secure
+payment provider checkout page.

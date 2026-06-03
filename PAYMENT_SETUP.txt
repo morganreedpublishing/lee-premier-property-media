@@ -1,0 +1,26 @@
+Lee Premier Property Media booking and payment setup
+
+The website is ready to use scheduling and payment links. To activate online booking:
+
+1. Create a scheduling link in Calendly, Acuity, Square Appointments, HoneyBook, or another booking tool.
+2. Create checkout links in Stripe, Square, PayPal, or another payment provider.
+2. Open script.js.
+3. Paste the scheduler URL into SITE_SETTINGS.schedulerUrl.
+4. Paste the checkout URLs into SITE_SETTINGS.paymentLinks.
+5. Replace SITE_SETTINGS.email and SITE_SETTINGS.phone with the real business contact details.
+
+Example:
+
+const SITE_SETTINGS = {
+  email: "hello@leepremierpropertymedia.com",
+  phone: "(239) 555-0197",
+  schedulerUrl: "https://calendly.com/your-calendar/real-estate-photoshoot",
+  paymentLinks: {
+    "Essential Photos": "https://buy.stripe.com/your-essential-link",
+    "Premier Photo + Drone": "https://buy.stripe.com/your-premier-link",
+    "Luxury Media Bundle": "https://buy.stripe.com/your-luxury-link",
+  },
+};
+
+For a fully automated checkout that charges the exact total including add-ons, use a secure backend with Stripe Checkout,
+Square Checkout, or PayPal Orders. Do not collect credit card numbers directly in this static HTML page.
