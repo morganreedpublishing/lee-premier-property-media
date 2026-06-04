@@ -171,6 +171,11 @@ loadCalendlyEmbed();
 
 bookingForm?.addEventListener("change", updateSummary);
 
+bookingForm?.querySelector('input[name="virtualStagingRooms"]')?.addEventListener("input", (event) => {
+  event.target.value = event.target.value.replace(/\D/g, "").slice(0, 2);
+  updateSummary();
+});
+
 bookingForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(bookingForm);

@@ -773,11 +773,19 @@ legend {
 }
 
 .qty-control input {
+  width: 82px;
   min-height: 46px;
   padding: 10px 12px;
+  color: var(--navy);
   font-size: 1rem;
   font-weight: 900;
   text-align: center;
+  opacity: 1;
+}
+
+.qty-control input:disabled {
+  color: var(--muted);
+  background: #eef2f5;
 }
 
 .addon-grid input {
