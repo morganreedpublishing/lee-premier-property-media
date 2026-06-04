@@ -1,5 +1,5 @@
 const SITE_SETTINGS = {
-  email: "hello@leepremierpropertymedia.com",
+  email: "leepremierpropertymedia@gmail.com",
   phone: "(239) 555-0197",
   schedulerUrl: "",
   paymentLinks: {
