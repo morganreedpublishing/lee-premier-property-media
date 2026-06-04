@@ -34,7 +34,7 @@ Current server-validated pricing:
 Packages:
 Essential Package: $225
 Includes photos, 3D walkthrough and floor plan.
-Premier Photo + Drone: $375
+Essential Package + Aerial Coverage: $375
 Luxury Media Bundle: $650
 
 Add-ons:
