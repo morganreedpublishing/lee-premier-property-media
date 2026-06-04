@@ -347,6 +347,14 @@ section {
   text-align: center;
 }
 
+.booking-note {
+  max-width: 620px;
+  margin: -24px auto 42px;
+  color: var(--muted);
+  font-weight: 800;
+  text-align: center;
+}
+
 .service-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

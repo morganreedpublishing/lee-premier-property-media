@@ -273,6 +273,7 @@
         <div class="section-heading centered">
           <p class="eyebrow">Schedule & pay</p>
           <h2>Reserve a photoshoot and prepare payment in one place.</h2>
+          <p class="booking-note">Photoshoots are scheduled in 3-hour appointment blocks.</p>
         </div>
         <div class="payment-status" id="payment-status" hidden></div>
         <div class="booking-shell">
@@ -323,13 +324,13 @@
                 <input type="date" name="date" required />
               </label>
               <label>
-                Preferred time
+                Preferred 3-hour block
                 <select name="time" required>
-                  <option value="">Select a time</option>
-                  <option>Morning</option>
-                  <option>Midday</option>
-                  <option>Afternoon</option>
-                  <option>Twilight</option>
+                  <option value="">Select a 3-hour block</option>
+                  <option>8:00 AM - 11:00 AM</option>
+                  <option>11:00 AM - 2:00 PM</option>
+                  <option>2:00 PM - 5:00 PM</option>
+                  <option>5:00 PM - 8:00 PM / Twilight</option>
                 </select>
               </label>
               <label>
@@ -393,7 +394,7 @@
             <h2>Select an open appointment time.</h2>
             <p>
               Once the Calendly event link is connected, available shoot times will appear here based on the calendar
-              rules set in Calendly.
+              rules set in Calendly. Each bookable appointment should be configured as a 3-hour photoshoot block.
             </p>
           </div>
           <div class="calendly-placeholder" id="calendly-placeholder">
@@ -442,7 +443,7 @@
           </details>
           <details>
             <summary>What happens after I request a shoot?</summary>
-            <p>Your booking request is sent with the package, property details and preferred time. Availability is confirmed before final scheduling and payment.</p>
+            <p>Your booking request is sent with the package, property details and preferred 3-hour time block. Availability is confirmed before final scheduling and payment.</p>
           </details>
           <details>
             <summary>Do you photograph vacation rentals?</summary>

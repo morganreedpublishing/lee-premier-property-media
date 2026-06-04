@@ -46,3 +46,10 @@ Calendly:
 
 Add the Calendly event booking URL to SITE_SETTINGS.schedulerUrl in script.js when available.
 The inline calendar will then show available appointment times clients can select.
+
+Calendly event setup:
+
+1. Create or edit the photoshoot event type in Calendly.
+2. Set the event duration to 180 minutes.
+3. Configure availability so clients only see the 3-hour blocks you want to offer.
+4. Copy the event booking URL and add it to SITE_SETTINGS.schedulerUrl in script.js.
