@@ -3,6 +3,7 @@ Lee Premier Property Media booking and payment setup
 The website is ready to use scheduling and payment links. To activate online booking:
 
 1. Create a scheduling link in Calendly, Acuity, Square Appointments, HoneyBook, or another booking tool.
+   For Calendly, use the event booking link. This lets the website show available times clients can select.
 2. Create checkout links in Stripe, Square, PayPal, or another payment provider.
 2. Open script.js.
 3. Paste the scheduler URL into SITE_SETTINGS.schedulerUrl.

@@ -381,6 +381,20 @@
             </small>
           </aside>
         </div>
+        <div class="calendar-panel" id="calendar-panel">
+          <div class="section-heading centered">
+            <p class="eyebrow">Live availability</p>
+            <h2>Select an open appointment time.</h2>
+            <p>
+              Once the Calendly event link is connected, available shoot times will appear here based on the calendar
+              rules set in Calendly.
+            </p>
+          </div>
+          <div class="calendly-placeholder" id="calendly-placeholder">
+            Calendly is configured. Add the event booking link to show live available times here.
+          </div>
+          <div class="calendly-inline-widget" id="calendly-embed"></div>
+        </div>
       </section>
 
       <section class="reviews">
@@ -479,6 +493,7 @@
       </div>
     </footer>
 
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
     <script src="script.js"></script>
   </body>
 </html>

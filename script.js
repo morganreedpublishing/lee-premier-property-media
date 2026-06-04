@@ -15,6 +15,8 @@ const bookingForm = document.querySelector("#booking-form");
 const contactForm = document.querySelector(".contact-form");
 const paymentLink = document.querySelector("#payment-link");
 const schedulerLink = document.querySelector("#scheduler-link");
+const calendarPanel = document.querySelector("#calendar-panel");
+const calendlyEmbed = document.querySelector("#calendly-embed");
 const summaryPackage = document.querySelector("#summary-package");
 const summaryAddons = document.querySelector("#summary-addons");
 const summaryTotal = document.querySelector("#summary-total");
@@ -53,6 +55,37 @@ function updateSummary() {
   const checkoutUrl = SITE_SETTINGS.paymentLinks[packageName] || "";
   paymentLink.dataset.paymentUrl = checkoutUrl;
   paymentLink.textContent = checkoutUrl ? `Pay ${money.format(total)} Securely` : "Pay Deposit";
+}
+
+function getCalendlyUrl() {
+  const schedulerUrl = SITE_SETTINGS.schedulerUrl.trim();
+
+  if (!schedulerUrl) return "";
+
+  const url = new URL(schedulerUrl);
+  url.searchParams.set("hide_gdpr_banner", "1");
+  url.searchParams.set("primary_color", "b88632");
+  url.searchParams.set("text_color", "061d38");
+  return url.toString();
+}
+
+function loadCalendlyEmbed() {
+  const calendlyUrl = getCalendlyUrl();
+
+  if (!calendlyUrl || !calendarPanel || !calendlyEmbed) return;
+
+  calendarPanel.classList.add("has-calendar");
+  calendlyEmbed.dataset.url = calendlyUrl;
+
+  if (window.Calendly?.initInlineWidget) {
+    window.Calendly.initInlineWidget({
+      url: calendlyUrl,
+      parentElement: calendlyEmbed,
+    });
+    return;
+  }
+
+  window.setTimeout(loadCalendlyEmbed, 300);
 }
 
 function buildMailBody(formData, selection) {
@@ -111,6 +144,8 @@ if (bookingDate) {
 if (schedulerLink) {
   schedulerLink.dataset.schedulerUrl = SITE_SETTINGS.schedulerUrl;
 }
+
+loadCalendlyEmbed();
 
 bookingForm?.addEventListener("change", updateSummary);
 
