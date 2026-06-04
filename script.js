@@ -1,6 +1,6 @@
 const SITE_SETTINGS = {
   email: "leepremierpropertymedia@gmail.com",
-  phone: "(239) 555-0197",
+  phone: "",
   schedulerUrl: "",
   paymentLinks: {
     "Essential Photos": "",
@@ -95,6 +95,11 @@ emailLinks.forEach((link) => {
 });
 
 phoneLinks.forEach((link) => {
+  if (!SITE_SETTINGS.phone) {
+    link.remove();
+    return;
+  }
+
   link.href = `tel:${SITE_SETTINGS.phone.replace(/\D/g, "")}`;
   link.textContent = SITE_SETTINGS.phone;
 });

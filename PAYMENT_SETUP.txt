@@ -7,13 +7,13 @@ The website is ready to use scheduling and payment links. To activate online boo
 2. Open script.js.
 3. Paste the scheduler URL into SITE_SETTINGS.schedulerUrl.
 4. Paste the checkout URLs into SITE_SETTINGS.paymentLinks.
-5. Replace SITE_SETTINGS.email and SITE_SETTINGS.phone with the real business contact details.
+5. Replace SITE_SETTINGS.email and SITE_SETTINGS.phone with the real business contact details when available.
 
 Example:
 
 const SITE_SETTINGS = {
   email: "leepremierpropertymedia@gmail.com",
-  phone: "(239) 555-0197",
+  phone: "",
   schedulerUrl: "https://calendly.com/your-calendar/real-estate-photoshoot",
   paymentLinks: {
     "Essential Photos": "https://buy.stripe.com/your-essential-link",
