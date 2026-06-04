@@ -29,13 +29,18 @@ const money = new Intl.NumberFormat("en-US", {
 function getBookingSelection() {
   const selectedPackage = bookingForm?.querySelector('input[name="package"]:checked');
   const selectedAddons = [...(bookingForm?.querySelectorAll('input[name="addons"]:checked') || [])];
+  const virtualStagingRooms = Math.min(
+    20,
+    Math.max(1, Number.parseInt(bookingForm?.querySelector('input[name="virtualStagingRooms"]')?.value || "1", 10) || 1),
+  );
   const packageName = selectedPackage?.value || "Essential Package";
   const packagePrice = Number(selectedPackage?.dataset.price || 0);
   const addons = selectedAddons.map((addon) => ({
     name: addon.value,
     price: Number(addon.dataset.price || 0),
+    quantity: addon.value === "Virtual staging" ? Math.max(1, virtualStagingRooms) : 1,
   }));
-  const total = addons.reduce((sum, addon) => sum + addon.price, packagePrice);
+  const total = addons.reduce((sum, addon) => sum + addon.price * addon.quantity, packagePrice);
 
   return { addons, packageName, total };
 }
@@ -43,9 +48,18 @@ function getBookingSelection() {
 function updateSummary() {
   if (!bookingForm) return;
 
+  const virtualStagingAddon = bookingForm.querySelector('input[name="addons"][value="Virtual staging"]');
+  const virtualStagingRooms = bookingForm.querySelector('input[name="virtualStagingRooms"]');
+
+  if (virtualStagingRooms && virtualStagingAddon) {
+    virtualStagingRooms.disabled = !virtualStagingAddon.checked;
+  }
+
   const { addons, packageName, total } = getBookingSelection();
   summaryPackage.textContent = packageName;
-  summaryAddons.textContent = addons.length ? addons.map((addon) => addon.name).join(", ") : "None selected";
+  summaryAddons.textContent = addons.length
+    ? addons.map((addon) => (addon.quantity > 1 ? `${addon.name} x ${addon.quantity}` : addon.name)).join(", ")
+    : "None selected";
   summaryTotal.textContent = money.format(total);
   paymentLink.textContent = `Pay ${money.format(total)} Securely`;
 }
@@ -83,7 +97,9 @@ function loadCalendlyEmbed() {
 
 function buildMailBody(formData, selection) {
   const addons = selection.addons.length
-    ? selection.addons.map((addon) => `${addon.name} (${money.format(addon.price)})`).join(", ")
+    ? selection.addons
+        .map((addon) => `${addon.name}${addon.quantity > 1 ? ` x ${addon.quantity}` : ""} (${money.format(addon.price * addon.quantity)})`)
+        .join(", ")
     : "None selected";
 
   return [
@@ -197,7 +213,10 @@ paymentLink?.addEventListener("click", async (event) => {
       },
       body: JSON.stringify({
         packageName: selection.packageName,
-        addons: selection.addons.map((addon) => addon.name),
+        addons: selection.addons.map((addon) => ({
+          name: addon.name,
+          quantity: addon.quantity,
+        })),
         customer: {
           name: formData.get("name") || "",
           email: formData.get("email") || "",

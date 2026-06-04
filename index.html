@@ -323,7 +323,17 @@
             <fieldset>
               <legend>Add services</legend>
               <div class="addon-grid">
-                <label><input type="checkbox" name="addons" value="Virtual staging" data-price="45" /> Virtual staging <b>$45/room</b></label>
+                <label class="addon-with-qty">
+                  <span>
+                    <input type="checkbox" name="addons" value="Virtual staging" data-price="25" />
+                    Virtual staging
+                    <b>$25/room</b>
+                  </span>
+                  <span class="qty-control">
+                    Rooms
+                    <input type="number" name="virtualStagingRooms" value="1" min="1" max="20" inputmode="numeric" disabled />
+                  </span>
+                </label>
                 <label><input type="checkbox" name="addons" value="Twilight photos" data-price="125" /> Twilight photos <b>$125</b></label>
               </div>
             </fieldset>

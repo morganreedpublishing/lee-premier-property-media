@@ -8,8 +8,14 @@ const PACKAGES = {
 
 const ADDONS = {
   "Property over 2,500 sq ft": 10000,
-  "Virtual staging": 4500,
+  "Virtual staging": 2500,
   "Twilight photos": 12500,
+};
+
+const ADDON_QUANTITY_LIMITS = {
+  "Property over 2,500 sq ft": 1,
+  "Virtual staging": 20,
+  "Twilight photos": 1,
 };
 
 function response(statusCode, body) {
@@ -40,7 +46,18 @@ exports.handler = async (event) => {
   }
 
   const packageName = payload.packageName;
-  const addonNames = Array.isArray(payload.addons) ? payload.addons : [];
+  const addonItems = Array.isArray(payload.addons)
+    ? payload.addons.map((addon) => {
+        if (typeof addon === "string") {
+          return { name: addon, quantity: 1 };
+        }
+
+        return {
+          name: addon.name,
+          quantity: Number(addon.quantity || 1),
+        };
+      })
+    : [];
   const customer = payload.customer || {};
   const baseUrl = event.headers.origin || process.env.URL || "https://www.leepremierpropertymedia.com";
 
@@ -48,10 +65,19 @@ exports.handler = async (event) => {
     return response(400, { error: "Invalid package selected." });
   }
 
-  const invalidAddon = addonNames.find((addon) => !ADDONS[addon]);
+  const invalidAddon = addonItems.find((addon) => !ADDONS[addon.name]);
 
   if (invalidAddon) {
-    return response(400, { error: `Invalid add-on selected: ${invalidAddon}` });
+    return response(400, { error: `Invalid add-on selected: ${invalidAddon.name}` });
+  }
+
+  const invalidQuantity = addonItems.find((addon) => {
+    const maxQuantity = ADDON_QUANTITY_LIMITS[addon.name] || 1;
+    return !Number.isInteger(addon.quantity) || addon.quantity < 1 || addon.quantity > maxQuantity;
+  });
+
+  if (invalidQuantity) {
+    return response(400, { error: `Invalid quantity selected for ${invalidQuantity.name}.` });
   }
 
   const lineItems = [
@@ -66,16 +92,16 @@ exports.handler = async (event) => {
       },
       quantity: 1,
     },
-    ...addonNames.map((addon) => ({
+    ...addonItems.map((addon) => ({
       price_data: {
         currency: "usd",
         product_data: {
-          name: addon,
+          name: addon.name,
           description: "Lee Premier Property Media add-on service",
         },
-        unit_amount: ADDONS[addon],
+        unit_amount: ADDONS[addon.name],
       },
-      quantity: 1,
+      quantity: addon.quantity,
     })),
   ];
 
@@ -90,7 +116,7 @@ exports.handler = async (event) => {
       },
       metadata: {
         package: packageName,
-        addons: addonNames.join(", ") || "None",
+        addons: addonItems.map((addon) => `${addon.name} x ${addon.quantity}`).join(", ") || "None",
         customer_name: customer.name || "",
         customer_phone: customer.phone || "",
         property_address: customer.address || "",
