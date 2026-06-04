@@ -3,7 +3,7 @@ const SITE_SETTINGS = {
   phone: "",
   schedulerUrl: "",
   paymentLinks: {
-    "Essential Photos": "",
+    "Essential Photos": "https://buy.stripe.com/4gM3cw9AK4YE1Y9d6t1sQ04",
     "Premier Photo + Drone": "https://buy.stripe.com/4gMbJ2fZ8cr6gT3giF1sQ03",
     "Luxury Media Bundle": "https://buy.stripe.com/bJe4gA7sCcr61Y90jH1sQ02",
   },
