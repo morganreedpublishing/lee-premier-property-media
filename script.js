@@ -43,16 +43,6 @@ function getBookingSelection() {
 function updateSummary() {
   if (!bookingForm) return;
 
-  const selectedPackage = bookingForm.querySelector('input[name="package"]:checked')?.value;
-  const floorPlanAddon = bookingForm.querySelector('input[name="addons"][value="Floor plan"]');
-
-  if (floorPlanAddon) {
-    floorPlanAddon.disabled = selectedPackage === "Essential Package";
-    if (floorPlanAddon.disabled) {
-      floorPlanAddon.checked = false;
-    }
-  }
-
   const { addons, packageName, total } = getBookingSelection();
   summaryPackage.textContent = packageName;
   summaryAddons.textContent = addons.length ? addons.map((addon) => addon.name).join(", ") : "None selected";

@@ -7,10 +7,8 @@ const PACKAGES = {
 };
 
 const ADDONS = {
-  "Floor plan": 9500,
   "Virtual staging": 4500,
   "Twilight photos": 12500,
-  "Marketing kit": 15000,
 };
 
 function response(statusCode, body) {
