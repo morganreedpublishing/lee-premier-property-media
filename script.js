@@ -2,11 +2,6 @@ const SITE_SETTINGS = {
   email: "leepremierpropertymedia@gmail.com",
   phone: "",
   schedulerUrl: "",
-  paymentLinks: {
-    "Essential Photos": "https://buy.stripe.com/4gM3cw9AK4YE1Y9d6t1sQ04",
-    "Premier Photo + Drone": "https://buy.stripe.com/4gMbJ2fZ8cr6gT3giF1sQ03",
-    "Luxury Media Bundle": "https://buy.stripe.com/bJe4gA7sCcr61Y90jH1sQ02",
-  },
 };
 
 const header = document.querySelector(".site-header");
@@ -20,6 +15,7 @@ const calendlyEmbed = document.querySelector("#calendly-embed");
 const summaryPackage = document.querySelector("#summary-package");
 const summaryAddons = document.querySelector("#summary-addons");
 const summaryTotal = document.querySelector("#summary-total");
+const paymentStatus = document.querySelector("#payment-status");
 const bookingDate = bookingForm?.querySelector('input[name="date"]');
 const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
 const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
@@ -51,10 +47,7 @@ function updateSummary() {
   summaryPackage.textContent = packageName;
   summaryAddons.textContent = addons.length ? addons.map((addon) => addon.name).join(", ") : "None selected";
   summaryTotal.textContent = money.format(total);
-
-  const checkoutUrl = SITE_SETTINGS.paymentLinks[packageName] || "";
-  paymentLink.dataset.paymentUrl = checkoutUrl;
-  paymentLink.textContent = checkoutUrl ? `Pay ${money.format(total)} Securely` : "Pay Deposit";
+  paymentLink.textContent = `Pay ${money.format(total)} Securely`;
 }
 
 function getCalendlyUrl() {
@@ -122,6 +115,19 @@ document.querySelectorAll(".site-nav a").forEach((link) => {
   });
 });
 
+const paymentResult = new URLSearchParams(window.location.search).get("payment");
+
+if (paymentStatus && paymentResult === "success") {
+  paymentStatus.hidden = false;
+  paymentStatus.textContent = "Payment received. Your photoshoot details are ready for confirmation.";
+}
+
+if (paymentStatus && paymentResult === "cancelled") {
+  paymentStatus.hidden = false;
+  paymentStatus.classList.add("cancelled");
+  paymentStatus.textContent = "Payment was not completed. You can adjust your package and try again.";
+}
+
 emailLinks.forEach((link) => {
   link.href = `mailto:${SITE_SETTINGS.email}`;
   link.textContent = SITE_SETTINGS.email;
@@ -171,18 +177,50 @@ schedulerLink?.addEventListener("click", (event) => {
   schedulerLink.rel = "noopener";
 });
 
-paymentLink?.addEventListener("click", (event) => {
-  const checkoutUrl = paymentLink.dataset.paymentUrl;
+paymentLink?.addEventListener("click", async (event) => {
+  event.preventDefault();
 
-  if (!checkoutUrl) {
-    event.preventDefault();
-    alert("Payment is ready to connect. Add a Stripe, Square, or PayPal checkout URL in script.js to activate online payments.");
+  if (!bookingForm?.reportValidity()) {
     return;
   }
 
-  paymentLink.href = checkoutUrl;
-  paymentLink.target = "_blank";
-  paymentLink.rel = "noopener";
+  const formData = new FormData(bookingForm);
+  const selection = getBookingSelection();
+  paymentLink.textContent = "Opening Secure Checkout...";
+  paymentLink.setAttribute("aria-busy", "true");
+
+  try {
+    const checkoutResponse = await fetch("/.netlify/functions/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        packageName: selection.packageName,
+        addons: selection.addons.map((addon) => addon.name),
+        customer: {
+          name: formData.get("name") || "",
+          email: formData.get("email") || "",
+          phone: formData.get("phone") || "",
+          address: formData.get("address") || "",
+          date: formData.get("date") || "",
+          time: formData.get("time") || "",
+        },
+      }),
+    });
+    const checkout = await checkoutResponse.json();
+
+    if (!checkoutResponse.ok || !checkout.url) {
+      throw new Error(checkout.error || "Unable to start checkout.");
+    }
+
+    window.location.href = checkout.url;
+  } catch (error) {
+    alert(error.message || "Unable to start checkout. Please try again.");
+  } finally {
+    paymentLink.removeAttribute("aria-busy");
+    updateSummary();
+  }
 });
 
 contactForm?.addEventListener("submit", (event) => {

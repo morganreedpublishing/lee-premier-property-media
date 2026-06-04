@@ -1,0 +1,9 @@
+{
+  "name": "lee-premier-property-media",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lee Premier Property Media website with Netlify Functions and Stripe Checkout.",
+  "dependencies": {
+    "stripe": "^17.7.0"
+  }
+}
