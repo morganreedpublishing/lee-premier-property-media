@@ -750,7 +750,8 @@ legend {
 }
 
 .addon-grid .addon-with-qty {
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
+  gap: 16px;
 }
 
 .addon-with-qty > span:first-child {
@@ -762,15 +763,20 @@ legend {
 
 .qty-control {
   display: grid;
-  grid-template-columns: auto 70px;
+  grid-template-columns: auto 82px;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .qty-control input {
-  padding: 8px 9px;
+  min-height: 46px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-weight: 900;
   text-align: center;
 }
 
@@ -1067,6 +1073,11 @@ footer div {
   .addon-with-qty > span:first-child,
   .qty-control {
     grid-template-columns: 1fr;
+  }
+
+  .qty-control input {
+    width: 100%;
+    max-width: none;
   }
 
   footer div {
