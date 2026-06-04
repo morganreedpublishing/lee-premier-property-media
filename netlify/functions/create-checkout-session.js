@@ -7,6 +7,7 @@ const PACKAGES = {
 };
 
 const ADDONS = {
+  "Property over 2,500 sq ft": 10000,
   "Virtual staging": 4500,
   "Twilight photos": 12500,
 };

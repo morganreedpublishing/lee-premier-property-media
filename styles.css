@@ -666,6 +666,13 @@ legend {
   font-weight: 900;
 }
 
+.fieldset-note {
+  margin: -8px 0 14px;
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
 .package-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

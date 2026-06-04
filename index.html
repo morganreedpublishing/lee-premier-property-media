@@ -280,6 +280,7 @@
           <form class="booking-form" id="booking-form">
             <fieldset>
               <legend>Choose a package</legend>
+              <p class="fieldset-note">All packages include properties up to 2,500 square feet.</p>
               <div class="package-grid">
                 <label class="package-option">
                   <input type="radio" name="package" value="Essential Package" data-price="225" checked />
@@ -304,6 +305,17 @@
                     <small>Photo, drone, 3D walkthrough and social clips</small>
                     <b>$650</b>
                   </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Property size</legend>
+              <div class="addon-grid">
+                <label>
+                  <input type="checkbox" name="addons" value="Property over 2,500 sq ft" data-price="100" />
+                  Property over 2,500 sq ft
+                  <b>$100</b>
                 </label>
               </div>
             </fieldset>
