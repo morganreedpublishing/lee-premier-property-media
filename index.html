@@ -280,22 +280,22 @@
           <form class="booking-form" id="booking-form">
             <fieldset>
               <legend>Choose a package</legend>
-              <p class="fieldset-note">All packages include properties up to 2,500 square feet.</p>
+              <p class="fieldset-note">All packages include properties up to 3,000 square feet.</p>
               <div class="package-grid">
                 <label class="package-option">
-                  <input type="radio" name="package" value="Essential Package" data-price="225" checked />
+                  <input type="radio" name="package" value="Essential Package" data-price="275" checked />
                   <span>
                     <strong>Essential Package</strong>
                     <small>Photos, 3D walkthrough and floor plan</small>
-                    <b>$225</b>
+                    <b>$275</b>
                   </span>
                 </label>
                 <label class="package-option">
-                  <input type="radio" name="package" value="Essential Package + Aerial Coverage" data-price="350" />
+                  <input type="radio" name="package" value="Essential Package + Aerial Coverage" data-price="400" />
                   <span>
                     <strong>Essential Package + Aerial Coverage</strong>
                     <small>Essential Package plus drone coverage</small>
-                    <b>$350</b>
+                    <b>$400</b>
                   </span>
                 </label>
                 <label class="package-option">
@@ -311,29 +311,16 @@
 
             <fieldset>
               <legend>Property size</legend>
-              <div class="addon-grid">
-                <label>
-                  <input type="checkbox" name="addons" value="Property over 2,500 sq ft" data-price="100" />
-                  Property over 2,500 sq ft
-                  <b>+$100</b>
-                </label>
-              </div>
+              <p class="quote-note">
+                For properties over 3,000 square feet, please
+                <a href="mailto:leepremierpropertymedia@gmail.com?subject=Quote%20Request%20for%20Property%20Over%203000%20Sq%20Ft">request a quote</a>.
+              </p>
             </fieldset>
 
             <fieldset>
               <legend>Add services</legend>
               <div class="addon-grid">
-                <label class="addon-with-qty">
-                  <span>
-                    <input type="checkbox" name="addons" value="Virtual staging" data-price="25" />
-                    Virtual staging
-                    <b>$25/room</b>
-                  </span>
-                  <span class="qty-control">
-                    Rooms
-                    <input type="text" name="virtualStagingRooms" value="1" inputmode="numeric" pattern="[0-9]*" disabled />
-                  </span>
-                </label>
+                <label><input type="checkbox" name="addons" value="Virtual staging" data-price="75" /> Virtual staging <b>$75</b></label>
                 <label><input type="checkbox" name="addons" value="Twilight photos" data-price="125" /> Twilight photos <b>$125</b></label>
               </div>
             </fieldset>
@@ -391,7 +378,7 @@
             </div>
             <div class="summary-total">
               <span>Estimated total</span>
-              <strong id="summary-total">$225</strong>
+              <strong id="summary-total">$275</strong>
             </div>
             <p>
               Scheduling requests are sent first so availability can be confirmed. Connect the calendar and payment

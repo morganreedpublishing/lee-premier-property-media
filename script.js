@@ -29,16 +29,12 @@ const money = new Intl.NumberFormat("en-US", {
 function getBookingSelection() {
   const selectedPackage = bookingForm?.querySelector('input[name="package"]:checked');
   const selectedAddons = [...(bookingForm?.querySelectorAll('input[name="addons"]:checked') || [])];
-  const virtualStagingRooms = Math.min(
-    20,
-    Math.max(1, Number.parseInt(bookingForm?.querySelector('input[name="virtualStagingRooms"]')?.value || "1", 10) || 1),
-  );
   const packageName = selectedPackage?.value || "Essential Package";
   const packagePrice = Number(selectedPackage?.dataset.price || 0);
   const addons = selectedAddons.map((addon) => ({
     name: addon.value,
     price: Number(addon.dataset.price || 0),
-    quantity: addon.value === "Virtual staging" ? Math.max(1, virtualStagingRooms) : 1,
+    quantity: 1,
   }));
   const total = addons.reduce((sum, addon) => sum + addon.price * addon.quantity, packagePrice);
 
@@ -47,13 +43,6 @@ function getBookingSelection() {
 
 function updateSummary() {
   if (!bookingForm) return;
-
-  const virtualStagingAddon = bookingForm.querySelector('input[name="addons"][value="Virtual staging"]');
-  const virtualStagingRooms = bookingForm.querySelector('input[name="virtualStagingRooms"]');
-
-  if (virtualStagingRooms && virtualStagingAddon) {
-    virtualStagingRooms.disabled = !virtualStagingAddon.checked;
-  }
 
   const { addons, packageName, total } = getBookingSelection();
   summaryPackage.textContent = packageName;
@@ -170,11 +159,6 @@ if (schedulerLink) {
 loadCalendlyEmbed();
 
 bookingForm?.addEventListener("change", updateSummary);
-
-bookingForm?.querySelector('input[name="virtualStagingRooms"]')?.addEventListener("input", (event) => {
-  event.target.value = event.target.value.replace(/\D/g, "").slice(0, 2);
-  updateSummary();
-});
 
 bookingForm?.addEventListener("submit", (event) => {
   event.preventDefault();

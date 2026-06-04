@@ -749,45 +749,6 @@ legend {
   text-transform: none;
 }
 
-.addon-grid .addon-with-qty {
-  grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
-  gap: 16px;
-}
-
-.addon-with-qty > span:first-child {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 10px;
-}
-
-.qty-control {
-  display: grid;
-  grid-template-columns: auto 82px;
-  align-items: center;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.qty-control input {
-  width: 82px;
-  min-height: 46px;
-  padding: 10px 12px;
-  color: var(--navy);
-  font-size: 1rem;
-  font-weight: 900;
-  text-align: center;
-  opacity: 1;
-}
-
-.qty-control input:disabled {
-  color: var(--muted);
-  background: #eef2f5;
-}
-
 .addon-grid input {
   width: 18px;
   height: 18px;
@@ -801,6 +762,23 @@ legend {
 .addon-grid label:has(input:disabled) {
   color: var(--muted);
   opacity: 0.58;
+}
+
+.quote-note {
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 6px;
+  color: var(--muted);
+  background: #fbfcfd;
+}
+
+.quote-note a {
+  color: var(--navy);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .form-grid {
@@ -1075,17 +1053,6 @@ footer div {
   form .button,
   .highlight .button {
     width: 100%;
-  }
-
-  .addon-grid .addon-with-qty,
-  .addon-with-qty > span:first-child,
-  .qty-control {
-    grid-template-columns: 1fr;
-  }
-
-  .qty-control input {
-    width: 100%;
-    max-width: none;
   }
 
   footer div {

@@ -32,17 +32,17 @@ The secret key belongs only in Netlify environment variables.
 Current server-validated pricing:
 
 Packages:
-Essential Package: $225
+Essential Package: $275
 Includes photos, 3D walkthrough and floor plan.
-Essential Package + Aerial Coverage: $350
+Essential Package + Aerial Coverage: $400
 Luxury Media Bundle: $650
 
 Property size:
-All packages include properties up to 2,500 square feet.
-Properties over 2,500 square feet add +$100.
+All packages include properties up to 3,000 square feet.
+Properties over 3,000 square feet should request a quote by email.
 
 Add-ons:
-Virtual staging: $25 per room, up to 20 rooms
+Virtual staging: $75
 Twilight photos: $125
 
 Calendly:

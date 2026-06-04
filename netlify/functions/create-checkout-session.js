@@ -1,20 +1,18 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const PACKAGES = {
-  "Essential Package": 22500,
-  "Essential Package + Aerial Coverage": 35000,
+  "Essential Package": 27500,
+  "Essential Package + Aerial Coverage": 40000,
   "Luxury Media Bundle": 65000,
 };
 
 const ADDONS = {
-  "Property over 2,500 sq ft": 10000,
-  "Virtual staging": 2500,
+  "Virtual staging": 7500,
   "Twilight photos": 12500,
 };
 
 const ADDON_QUANTITY_LIMITS = {
-  "Property over 2,500 sq ft": 1,
-  "Virtual staging": 20,
+  "Virtual staging": 1,
   "Twilight photos": 1,
 };
 
