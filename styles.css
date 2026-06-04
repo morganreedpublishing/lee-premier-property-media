@@ -450,6 +450,14 @@ section {
   gap: 14px;
 }
 
+.prep-notice {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--gold);
+  color: var(--muted);
+  background: var(--sand);
+}
+
 .prep-grid article {
   padding: 24px;
   border: 1px solid var(--line);
