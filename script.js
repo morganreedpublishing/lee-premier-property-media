@@ -4,7 +4,7 @@ const SITE_SETTINGS = {
   schedulerUrl: "",
   paymentLinks: {
     "Essential Photos": "",
-    "Premier Photo + Drone": "",
+    "Premier Photo + Drone": "https://buy.stripe.com/4gMbJ2fZ8cr6gT3giF1sQ03",
     "Luxury Media Bundle": "https://buy.stripe.com/bJe4gA7sCcr61Y90jH1sQ02",
   },
 };

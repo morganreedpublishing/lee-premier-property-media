@@ -18,7 +18,7 @@ const SITE_SETTINGS = {
   schedulerUrl: "https://calendly.com/your-calendar/real-estate-photoshoot",
   paymentLinks: {
     "Essential Photos": "https://buy.stripe.com/your-essential-link",
-    "Premier Photo + Drone": "https://buy.stripe.com/your-premier-link",
+    "Premier Photo + Drone": "https://buy.stripe.com/4gMbJ2fZ8cr6gT3giF1sQ03",
     "Luxury Media Bundle": "https://buy.stripe.com/bJe4gA7sCcr61Y90jH1sQ02",
   },
 };
