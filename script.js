@@ -5,7 +5,7 @@ const SITE_SETTINGS = {
   paymentLinks: {
     "Essential Photos": "",
     "Premier Photo + Drone": "",
-    "Luxury Media Bundle": "",
+    "Luxury Media Bundle": "https://buy.stripe.com/bJe4gA7sCcr61Y90jH1sQ02",
   },
 };
 

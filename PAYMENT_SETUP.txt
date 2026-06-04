@@ -19,7 +19,7 @@ const SITE_SETTINGS = {
   paymentLinks: {
     "Essential Photos": "https://buy.stripe.com/your-essential-link",
     "Premier Photo + Drone": "https://buy.stripe.com/your-premier-link",
-    "Luxury Media Bundle": "https://buy.stripe.com/your-luxury-link",
+    "Luxury Media Bundle": "https://buy.stripe.com/bJe4gA7sCcr61Y90jH1sQ02",
   },
 };
 
