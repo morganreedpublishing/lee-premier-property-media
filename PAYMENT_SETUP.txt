@@ -34,12 +34,12 @@ Current server-validated pricing:
 Packages:
 Essential Package: $225
 Includes photos, 3D walkthrough and floor plan.
-Essential Package + Aerial Coverage: $375
+Essential Package + Aerial Coverage: $350
 Luxury Media Bundle: $650
 
 Property size:
 All packages include properties up to 2,500 square feet.
-Properties over 2,500 square feet add $100.
+Properties over 2,500 square feet add +$100.
 
 Add-ons:
 Virtual staging: $45
