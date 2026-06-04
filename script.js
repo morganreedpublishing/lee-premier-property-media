@@ -29,7 +29,7 @@ const money = new Intl.NumberFormat("en-US", {
 function getBookingSelection() {
   const selectedPackage = bookingForm?.querySelector('input[name="package"]:checked');
   const selectedAddons = [...(bookingForm?.querySelectorAll('input[name="addons"]:checked') || [])];
-  const packageName = selectedPackage?.value || "Essential Photos";
+  const packageName = selectedPackage?.value || "Essential Package";
   const packagePrice = Number(selectedPackage?.dataset.price || 0);
   const addons = selectedAddons.map((addon) => ({
     name: addon.value,
@@ -42,6 +42,16 @@ function getBookingSelection() {
 
 function updateSummary() {
   if (!bookingForm) return;
+
+  const selectedPackage = bookingForm.querySelector('input[name="package"]:checked')?.value;
+  const floorPlanAddon = bookingForm.querySelector('input[name="addons"][value="Floor plan"]');
+
+  if (floorPlanAddon) {
+    floorPlanAddon.disabled = selectedPackage === "Essential Package";
+    if (floorPlanAddon.disabled) {
+      floorPlanAddon.checked = false;
+    }
+  }
 
   const { addons, packageName, total } = getBookingSelection();
   summaryPackage.textContent = packageName;

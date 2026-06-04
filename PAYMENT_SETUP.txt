@@ -32,7 +32,8 @@ The secret key belongs only in Netlify environment variables.
 Current server-validated pricing:
 
 Packages:
-Essential Photos: $225
+Essential Package: $225
+Includes photos, 3D walkthrough and floor plan.
 Premier Photo + Drone: $375
 Luxury Media Bundle: $650
 

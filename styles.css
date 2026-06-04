@@ -752,6 +752,11 @@ legend {
   color: var(--navy);
 }
 
+.addon-grid label:has(input:disabled) {
+  color: var(--muted);
+  opacity: 0.58;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

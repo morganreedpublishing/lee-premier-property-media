@@ -1,7 +1,7 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const PACKAGES = {
-  "Essential Photos": 22500,
+  "Essential Package": 22500,
   "Premier Photo + Drone": 37500,
   "Luxury Media Bundle": 65000,
 };
