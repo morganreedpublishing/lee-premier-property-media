@@ -376,6 +376,19 @@ section {
   object-fit: cover;
 }
 
+.service-image-link {
+  display: block;
+  overflow: hidden;
+}
+
+.service-image-link img {
+  transition: transform 220ms ease;
+}
+
+.service-image-link:hover img {
+  transform: scale(1.04);
+}
+
 .service-grid div {
   padding: 22px;
 }
